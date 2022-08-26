@@ -16,7 +16,11 @@ const Basket = () => {
 
             dispatch({ type: 'SET_BASKET', payload: jsonData});
         }
-        getBasket();
+
+        if(!user_id == null){
+            getBasket();
+        }
+        
     }, [dispatch, user_id])
 
 

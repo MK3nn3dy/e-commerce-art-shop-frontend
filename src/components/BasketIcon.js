@@ -8,7 +8,7 @@ const BasketIcon = () => {
 
     return (
         <div className="cart-icon">
-            <p>Basket</p>
+            <p className="nav-link">Basket</p>
             <div className="cart-count">{basket_items.length}</div>
         </div>
     )

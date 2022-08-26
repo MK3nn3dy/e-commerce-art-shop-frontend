@@ -29,7 +29,9 @@ const Home = () => {
             userDispatch({ type: 'SET_BASKET', payload: jsonData});
             console.log(jsonData);
         }
-        getBasket();
+        if(!user_id == null){
+            getBasket();
+        }
 
     },[dispatch, userDispatch, user_id])
 

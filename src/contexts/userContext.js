@@ -9,11 +9,13 @@ export const userReducer = (state, action) => {
     switch(action.type){
         case 'LOGIN':
             return {
-                user_id: action.payload
+                user_id: action.payload,
+                basket_items: []
             }
         case 'LOGOUT':
             return {
-                user_id: null
+                user_id: null,
+                basket_items: []
             }
         case 'SET_BASKET':
             return {
@@ -29,9 +31,12 @@ export const userReducer = (state, action) => {
 export const UserContextProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(userReducer, {
-        user_id: 1,
+        user_id: null,
         basket_items: []
     })
+
+
+    console.log('User context state: ', state);
 
     return (
         <UserContext.Provider value={{...state, dispatch}}>

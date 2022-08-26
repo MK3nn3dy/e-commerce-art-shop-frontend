@@ -49,12 +49,15 @@
     margin: 0 1rem;
 }
 
-.login-signup > a,
-.login-signup > a:hover,
-.login-signup > a:active,
-.login-signup > a:visited {
+.nav-link {
     text-decoration: none;
     color: black;
+    transition: .2s all;
+}
+
+.nav-link:hover {
+    cursor: pointer;
+    color: blue;
 }
 
 /* Cart */
@@ -176,4 +179,28 @@
     margin-top: 2rem auto;
     margin-bottom: 6rem;
     cursor: zoom-in;
+}
+
+/* Login and Signup */
+
+.login-form, .signup-form {
+    width: 50%;
+    height: auto;
+    padding: 5rem;
+    border-radius: 2rem;
+    margin: 6rem auto;
+    box-shadow: .5rem .5rem .5rem #00000044;
+}
+
+.login-form > input,
+.signup-form > input,
+.login-form > label,
+.signup-form > label {
+    display: block;
+    margin: 1.5rem 0;
+}
+
+.login-form > input,
+.signup-form > input {
+    width: 50%;
 }
