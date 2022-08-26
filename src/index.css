@@ -1,13 +1,179 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Reset */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Fonts */
+
+/* Navbar */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: space-between;
+    justify-items: center;
+    width: 100%;
+    height: 10rem;
+    padding: 2rem;
+    background-color: white;
+    box-shadow:.3rem .3rem .3rem #00000044;
+    z-index: 2;
+}
+
+.navbar > h1 > a,
+.navbar > h1 > a:hover
+.navbar > h1 > a:active,
+.navbar > h1 > a:visited{
+    color: black;
+    text-decoration: none;
+}
+
+.login-signup {
+    display: grid;
+    gap: 3rem;
+    grid-auto-flow: column;
+    width: 80%;
+    align-items: center;
+    justify-items: left;
+    justify-self: left;
+}
+
+.login-signup > p {
+    display: inline;
+    margin: 0 1rem;
+}
+
+.login-signup > a,
+.login-signup > a:hover,
+.login-signup > a:active,
+.login-signup > a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+/* Cart */
+
+.cart-icon {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    top: -1.5rem;
+    right: -1.5rem;
+    height: 2rem;
+    width: 2rem;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: .5rem;
+}
+
+/* Home Page */
+
+.page-container {
+    width: 70%;
+    height: auto;
+    margin: 5rem auto;
+}
+
+.page-panel {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.product-card {
+    position: relative;
+    width: 80%;
+    height: auto;
+    margin: 1rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: .2rem .2rem .2rem #00000044;
+}
+
+.price {
+    position: absolute;
+    bottom: 2.5rem;
+    left: .5rem;
+    margin: 1rem 0;
+    color: rgb(61, 26, 94);
+    padding: .5rem;
+}
+
+.quantity {
+    position: absolute;
+    width: 3rem;
+    bottom: .5rem;
+    left: 5rem;
+    padding: .5rem;
+}
+
+.quantity-label {
+    position: absolute;
+    width: 3rem;
+    bottom: .5rem;
+    left: .5rem;
+    padding: .5rem;
+}
+
+.cart-btn {
+    position: absolute;
+    bottom: .5rem;
+    right: .5rem;
+    background-color: rgb(57, 175, 48);
+    color: white;
+    padding: .5rem;
+    border-radius: .5rem;
+}
+
+.cart-btn:hover {
+    cursor: pointer;
+}
+
+/* Basket Page */
+
+.basket-item {
+    position: relative;
+    width: 100%;
+    height: 15rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: .2rem .2rem .2rem #00000044;
+}
+
+.remove-all-from-basket {
+    position: absolute;
+    bottom: .5rem;
+    right: .5rem;
+    background-color: maroon;
+    color: white;
+    padding: .5rem;
+    border-radius: .5rem;
+}
+
+.remove-all-from-basket:hover {
+    cursor: pointer;
+    background-color: rgb(151, 18, 18);
+}
+
+/* Product Images */
+
+.product-image {
+    position: relative;
+    top: 1rem;
+    width: 70%;
+    margin-top: 2rem auto;
+    margin-bottom: 6rem;
+    cursor: zoom-in;
 }
