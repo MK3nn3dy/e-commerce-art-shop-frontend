@@ -8,7 +8,7 @@ const Home = () => {
 
     // get state and dispatch from pieces context
     const { pieces, dispatch } = usePiecesContext();
-    const { user_id, basket_items, dispatch: userDispatch } = useUserContext();
+    const { user_id, basket_items, token, dispatch: userDispatch } = useUserContext();
 
     useEffect(() => {
         const getAllPieces = async () => {
@@ -18,18 +18,22 @@ const Home = () => {
             if(response.ok){
                 dispatch({ type: 'SET_PIECES', payload: jsonData});
             }
+
+            console.log(jsonData)
             
         }
         getAllPieces();
 
         const getBasket = async () => {
-            const basketItems = await fetch('http://localhost:5000/baskets/' + user_id);
+            const basketItems = await fetch('http://localhost:5000/baskets/' + user_id, {
+                headers: { 'Authorization': `Bearer ${token}`}
+            });
             const jsonData = await basketItems.json();
 
             userDispatch({ type: 'SET_BASKET', payload: jsonData});
             console.log(jsonData);
         }
-        if(!user_id == null){
+        if(user_id){
             getBasket();
         }
 
@@ -41,24 +45,35 @@ const Home = () => {
 
         e.preventDefault();
 
-        console.log(e.target.parentNode.childNodes[4].value)
+        console.log(e.target.parentNode.childNodes[5].value)
 
         const requestObject = {
+            type: 'ADD_TO_BASKET',
             piece_id: e.target.parentNode.id,
-            quantity: e.target.parentNode.childNodes[4].value
+            quantity: e.target.parentNode.childNodes[5].value,
+            // price * quantity
+            price: (e.target.parentNode.childNodes[3].innerHTML * e.target.parentNode.childNodes[5].value)
         }
+
+        console.log(requestObject.price);
+
 
         await fetch('http://localhost:5000/baskets/' + user_id, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(requestObject)
         })
 
 
         // update user basket in context (dispatch destructured as userDispatch)
-        const newBasketItems = await fetch('http://localhost:5000/baskets/' + user_id);
+        const newBasketItems = await fetch('http://localhost:5000/baskets/' + user_id, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         const jsonData = await newBasketItems.json();
         userDispatch({ type: 'SET_BASKET', payload: jsonData});
 
@@ -72,9 +87,10 @@ const Home = () => {
                     <div id ={piece.piece_id} className="product-card" key={piece.piece_id}>
                         <h3>{piece.description}</h3>
                         <img className="product-image" src={piece.img_url}/>
-                        <p className="price">£{piece.price}</p>
+                        <p className="pounds">£</p><span className="price">{piece.price}</span>
                         <label className="quantity-label">Quantity: </label>
                         <input className="quantity" type="number" min="0"/>
+                        <p className="stock">In stock: {piece.available}</p>
                         <div className="cart-btn" onClick={handleAddToCart}>Add to Cart</div>
                     </div>
                 ))}

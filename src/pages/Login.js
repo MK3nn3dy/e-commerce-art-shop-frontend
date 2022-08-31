@@ -52,10 +52,10 @@ const Login = () => {
             // if response is OK...
             if(User.ok){
                 // put token in browsers local storage
-                localStorage.setItem('user', JSON.stringify(userJson.token));
+                localStorage.setItem('user', JSON.stringify(userJson));
 
                 //update user context
-                dispatch({ type: 'LOGIN', payload: userJson.user });
+                dispatch({ type: 'LOGIN', payload: userJson });
                 setIsLoading(false);
             }
     
@@ -84,7 +84,8 @@ const Login = () => {
                 value={password}
             />
 
-            <button>Log In</button>
+            <button disabled={isLoading}>Log In</button>
+            {error && <div className="error">{error}</div>}
         </form>
     )
 

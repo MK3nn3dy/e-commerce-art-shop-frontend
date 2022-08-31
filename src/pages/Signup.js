@@ -58,10 +58,10 @@ const Signup = () => {
             // if response OK...
             if(newUser.ok){
                 // put token in browsers local storage
-                localStorage.setItem('user', JSON.stringify(newUserJson.token));
+                localStorage.setItem('user', JSON.stringify(newUserJson));
 
                 //update user context
-                dispatch({ type: 'LOGIN', payload: newUserJson.newUserId });
+                dispatch({ type: 'LOGIN', payload: newUserJson });
                 setIsLoading(false);
             }
             
